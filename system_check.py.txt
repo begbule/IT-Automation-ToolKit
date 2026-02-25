@@ -1,0 +1,34 @@
+import os
+import platform
+import shutil
+import socket
+
+def check_disk():
+    total, used, free = shutil.disk_usage("/")
+    print("=== Disk Information ===")
+    print(f"Total: {total // (2**30)} GB")
+    print(f"Used: {used // (2**30)} GB")
+    print(f"Free: {free // (2**30)} GB")
+    print()
+
+def check_system():
+    print("=== System Information ===")
+    print("Computer Name:", platform.node())
+    print("OS:", platform.system(), platform.release())
+    print("Processor:", platform.processor())
+    print()
+
+def check_internet():
+    print("=== Internet Connectivity ===")
+    try:
+        socket.create_connection(("8.8.8.8", 53))
+        print("Internet: Connected")
+    except OSError:
+        print("Internet: Not Connected")
+    print()
+
+if __name__ == "__main__":
+    print("IT Automation Toolkit\n")
+    check_system()
+    check_disk()
+    check_internet()
